@@ -1,0 +1,1 @@
+var hola;var hola = 10;var carro;var h = 18.289;

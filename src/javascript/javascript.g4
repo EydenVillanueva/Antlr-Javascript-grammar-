@@ -7,8 +7,12 @@
 grammar javascript;
 
 
+instruccion: (declaracion|asignacion)*;
+             
 
-declaracion : VAR (ESPACIO|TABULADOR) variable (COMA (ESPACIO|TABULADOR)? variable)* PUNTOCOMA?;
+asignacion: declaracion (ESPACIO|TABULADOR)? IGUAL (ESPACIO|TABULADOR)? (STRING|NUMERO) PUNTOCOMA?;
+
+declaracion : VAR? (ESPACIO|TABULADOR) variable (COMA (ESPACIO|TABULADOR)? variable)* PUNTOCOMA?;
 
 
 variable : VARIABLE;
@@ -22,11 +26,17 @@ fragment SIGNODOLAR: '$';
 PUNTO: '.';
 COMA: ',';
 TABULADOR: '\t';
+IGUAL: '=';
+fragment COMILLAS: '"';
 
 /*CARACTERES ALFANUMERICOS*/
 fragment LETRA: [a-zA-Z];
 fragment DIGITO: [0-9];
+
+/*TIPOS DE DATO*/
 NUMERO: DIGITO+ (PUNTO DIGITO+)?;
+STRING: COMILLAS (LETRA|NUMERO)* COMILLAS;
+
 
 /*PALABRAS RESERVADAS*/
 VAR: 'var';
@@ -35,4 +45,4 @@ VAR: 'var';
 MENOS: '-';
 
 /*TOKENS*/
-VARIABLE : GUIONBAJO|SIGNODOLAR|LETRA (GUIONBAJO|SIGNODOLAR|LETRA|DIGITO)*;
+VARIABLE : (GUIONBAJO|SIGNODOLAR|LETRA)+ (GUIONBAJO|SIGNODOLAR|LETRA|DIGITO)*;
