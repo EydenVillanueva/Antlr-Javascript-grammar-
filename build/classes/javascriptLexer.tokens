@@ -1,0 +1,17 @@
+IGUAL=6
+VAR=9
+VARIABLE=11
+NUMERO=7
+MENOS=10
+PUNTOCOMA=1
+STRING=8
+PUNTO=4
+WS=2
+NL=3
+COMA=5
+'.'=4
+'='=6
+'-'=10
+','=5
+';'=1
+'var'=9
