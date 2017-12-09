@@ -1,1 +1,3 @@
-var hola;var hola = 10;var carro;var h = 18.289;
+var eyden;
+var joaquin = 10;enrique = "no entiendo como soporta tanto"
+var pablo = 29.290;
