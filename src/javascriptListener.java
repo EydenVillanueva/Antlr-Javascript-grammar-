@@ -18,6 +18,18 @@ public interface javascriptListener extends ParseTreeListener {
 	 */
 	void exitAsignacion(@NotNull javascriptParser.AsignacionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code opera}
+	 * labeled alternative in {@link javascriptParser#sentencia}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpera(@NotNull javascriptParser.OperaContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code opera}
+	 * labeled alternative in {@link javascriptParser#sentencia}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpera(@NotNull javascriptParser.OperaContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link javascriptParser#declaracion}.
 	 * @param ctx the parse tree
 	 */
@@ -52,6 +64,16 @@ public interface javascriptListener extends ParseTreeListener {
 	 */
 	void exitDeclara(@NotNull javascriptParser.DeclaraContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link javascriptParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperacion(@NotNull javascriptParser.OperacionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link javascriptParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperacion(@NotNull javascriptParser.OperacionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link javascriptParser#prog}.
 	 * @param ctx the parse tree
 	 */
@@ -61,4 +83,14 @@ public interface javascriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProg(@NotNull javascriptParser.ProgContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link javascriptParser#argumento}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgumento(@NotNull javascriptParser.ArgumentoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link javascriptParser#argumento}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgumento(@NotNull javascriptParser.ArgumentoContext ctx);
 }
