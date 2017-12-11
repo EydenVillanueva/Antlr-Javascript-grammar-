@@ -25,7 +25,7 @@ public class Javascript {
         ANTLRInputStream entrada = null;
         
         try{
-            archEntrada = "C:\\Users\\Eyden Villanueva\\Documents\\GitHub\\Antlr-Javascript-grammar-\\src\\entrada.js";
+            archEntrada = "C:\\Users\\Christopher Paredes\\Documents\\GitHub\\Antlr-Javascript-grammar-\\src\\entrada.js";
             fuenteEntrada = new FileInputStream(archEntrada);
             entrada = new ANTLRInputStream(fuenteEntrada);
         
