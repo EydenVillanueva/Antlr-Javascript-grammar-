@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,8 +16,8 @@ public class OperaString {
 
     private javascriptParser.OperaContext ctx;
     private String ctxCadena;
-    private String [] operaciones = {""};
-    private String [] argumentos = {""};
+    private ArrayList operaciones = new ArrayList();
+    private ArrayList argumentos = new ArrayList();
     
     
     public OperaString(javascriptParser.OperaContext ctx){
@@ -32,44 +35,47 @@ public class OperaString {
     }
     
     //Devuelve la lista de operaciones en un array de una dimensión
-    public String[] Operacion(){
+    public ArrayList Operacion(){
         int tamano = ctx.operacion().OPERADORES().size();
-        String auxiliar = "";
+        
+        
         
         if(tamano == 1){
+            String auxiliar = "";
             String operacion = ctx.operacion().OPERADORES().toString();
             
             if(operacion.contains("+")){
-                auxiliar = "+";
+                auxiliar = "mas";
             }
             if(operacion.contains("-")){
-                auxiliar = "-";
+                auxiliar = "menos";
             }
             if(operacion.contains("/")){
-                auxiliar = "/";
+                auxiliar = "entre";
             }
             if(operacion.contains("*")){
-                auxiliar = "*";
+                auxiliar = "por";
             }
             
-            operaciones[0] = auxiliar;
+            operaciones.add(auxiliar);
             return operaciones;
         }
         
         else if(ctx.operacion().OPERADORES().size() != 1){
             
+            
             for(int i  = 0; i < tamano; i++ ){
                 if(ctx.operacion().OPERADORES(i).toString().contains("+")){
-                    operaciones[i] = "+";
+                    operaciones.add("mas");
                 }
                 if(ctx.operacion().OPERADORES(i).toString().contains("-")){
-                    operaciones[i] = "-";
+                    operaciones.add("menos");
                 }
                 if(ctx.operacion().OPERADORES(i).toString().contains("/")){
-                    operaciones[i] = "/";
+                    operaciones.add("entre");
                 }
                 if(ctx.operacion().OPERADORES(i).toString().contains("*")){
-                    operaciones[i] = "*";
+                    operaciones.add("por");
                 }
             }
             
@@ -79,16 +85,19 @@ public class OperaString {
     }
     
     //Devuelve la lista de argumentos en un array de una dimensión
-    public String[] tiposArgumento(){
+    public ArrayList tiposArgumento(){
         
         int tamano = ctx.operacion().argumento().size();
         
         for (int i = 0; i < tamano; i++){
             if(ctx.operacion().argumento(i).VARIABLE() != null){
-                argumentos[i] = ctx.operacion().argumento(i).VARIABLE().toString();
+                argumentos.add(ctx.operacion().argumento(i).VARIABLE().toString());
             }            
             if(ctx.operacion().argumento(i).NUMERO() != null){
-                argumentos[i] = ctx.operacion().argumento(i).NUMERO().toString();
+                argumentos.add(ctx.operacion().argumento(i).NUMERO().toString());
+            }
+            if(ctx.operacion().argumento(i).STRING() != null){
+                argumentos.add(ctx.operacion().argumento(i).STRING().toString());
             }
         }
         
@@ -97,6 +106,36 @@ public class OperaString {
     
     //devuelve el codigo comentado para la impresion
     public String CodigoComentado(){
-        return "";
+        
+        tiposArgumento();
+        Operacion();
+        
+        String codigoComentado;
+        codigoComentado = ctxCadena;
+        int tamano = operaciones.size();
+        
+        if(codigoComentado.contains("\n") || codigoComentado.contains("\r")){
+            codigoComentado = codigoComentado.concat("//");
+        }
+        else{
+            codigoComentado = codigoComentado.concat("\n//");
+        }
+        
+        codigoComentado = codigoComentado.concat(" "+argumentos.get(0));
+        int contador = 1;
+        
+        for(int i = 0; i < tamano; i++){
+            if(i%2 == 0 || i == 0){
+                //System.out.println(i);
+                codigoComentado = codigoComentado.concat(" " + operaciones.get(i));
+            }
+            if(contador%2 != 0){
+                //System.out.println(i);
+                codigoComentado = codigoComentado.concat(" " + argumentos.get(contador));
+            }
+            contador++;
+        }
+        
+        return codigoComentado;
     }
 }

@@ -67,15 +67,14 @@ public class Visitor extends javascriptBaseVisitor<String>{
     @Override
     public String visitOpera(javascriptParser.OperaContext ctx){
         
-        String ctxCadena = ctx.getText();
+        OperaString operacion = new OperaString(ctx);
         
-        System.out.println(ctx.operacion().argumento().get(0).NUMERO());
-        System.out.println(ctx.operacion().argumento().get(0).VARIABLE());
-        System.out.println(ctx.operacion().argumento().get(0).STRING());
-        System.out.println(ctx.operacion().argumento(0).NUMERO());
-  
         
-        return "";
+        
+        System.out.println(operacion.CodigoComentado());
+        
+
+        return operacion.CodigoComentado();
     }
     
        
