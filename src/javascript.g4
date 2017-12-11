@@ -12,13 +12,16 @@ prog:   sentencia* (NL|WS)*;
 
 
 sentencia: asignacion           #asigna
+        |  operacion            #opera
         |   declaracion         #declara
         ;
 
 
-asignacion: declaracion WS* IGUAL WS* (STRING|NUMERO) PUNTOCOMA? (WS|NL)* ;
-declaracion : VAR? WS* VARIABLE WS* (COMA WS* VARIABLE)* PUNTOCOMA? (WS|NL)* ;
 
+operacion : (WS|NL)* argumento WS* (WS* OPERADORES WS* argumento)* WS* PUNTOCOMA? (WS|NL)* ;
+asignacion: declaracion WS* IGUAL WS* (STRING|NUMERO) PUNTOCOMA? (WS|NL)* ;
+declaracion : (WS|NL)* VAR? WS* VARIABLE WS* (COMA WS* VARIABLE)* WS* PUNTOCOMA? (WS|NL)* ;
+argumento: (STRING|NUMERO|VARIABLE) ;
 
 
 
@@ -46,8 +49,16 @@ STRING: COMILLAS (LETRA|NUMERO|WS|NL)* COMILLAS;
 /*PALABRAS RESERVADAS*/
 VAR: 'var';
 
-/*OPERACIONES MATEMATICAS*/
-MENOS: '-';
 
-/*TOKENS*/
+
+/*OPERACIONES MATEMATICAS*/
+fragment MENOS: '-';
+fragment MAS: '+';
+fragment POR: '*';
+fragment ENTRE: '/';
+
+OPERADORES: (MENOS|MAS|POR|ENTRE);
+
+/*TOKENS ESPECIALES*/
 VARIABLE : (GUIONBAJO|SIGNODOLAR|LETRA)+ (GUIONBAJO|SIGNODOLAR|LETRA|DIGITO)*;
+

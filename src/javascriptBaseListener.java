@@ -28,6 +28,18 @@ public class javascriptBaseListener implements javascriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOpera(@NotNull javascriptParser.OperaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpera(@NotNull javascriptParser.OperaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaracion(@NotNull javascriptParser.DeclaracionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -64,6 +76,18 @@ public class javascriptBaseListener implements javascriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOperacion(@NotNull javascriptParser.OperacionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOperacion(@NotNull javascriptParser.OperacionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProg(@NotNull javascriptParser.ProgContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -71,6 +95,18 @@ public class javascriptBaseListener implements javascriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProg(@NotNull javascriptParser.ProgContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArgumento(@NotNull javascriptParser.ArgumentoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArgumento(@NotNull javascriptParser.ArgumentoContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

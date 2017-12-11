@@ -1,4 +1,1 @@
-var eyden = 10;
-var h;
-var h = "putito";
-hola
+10.2 / carlos;

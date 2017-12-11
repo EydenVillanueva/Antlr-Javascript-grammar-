@@ -1,5 +1,6 @@
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,10 +13,13 @@ import java.util.List;
  * @author Eyden Villanueva
  */
 public class Visitor extends javascriptBaseVisitor<String>{
+    
+    
    
     
     @Override
     public String visitAsignacion(javascriptParser.AsignacionContext ctx ){
+        
         
         String ctxCadena = ctx.getText();
            
@@ -28,6 +32,7 @@ public class Visitor extends javascriptBaseVisitor<String>{
             }
         }
         else{
+            String id = ctx.STRING().getText();
             if(ctxCadena.contains("\n") || ctxCadena.contains("\r")){
                 ctxCadena = ctxCadena.concat( "//Asignacion de " + ctx.NUMERO().toString() + " a " + ctx.declaracion().VARIABLE(0));
             }
@@ -38,7 +43,7 @@ public class Visitor extends javascriptBaseVisitor<String>{
         
         System.out.println(ctxCadena);
         
-        return "";
+        return ctxCadena;
     }
     
     @Override
@@ -58,5 +63,24 @@ public class Visitor extends javascriptBaseVisitor<String>{
         
         return ctx.getText();
     }
-   
+    
+    @Override
+    public String visitOpera(javascriptParser.OperaContext ctx){
+        
+        String ctxCadena = ctx.getText();
+        
+        System.out.println(ctx.operacion().argumento().get(0).NUMERO());
+        System.out.println(ctx.operacion().argumento().get(0).VARIABLE());
+        System.out.println(ctx.operacion().argumento().get(0).STRING());
+        System.out.println(ctx.operacion().argumento(0).NUMERO());
+  
+        
+        return "";
+    }
+    
+       
+    @Override
+    public String visitArgumento(javascriptParser.ArgumentoContext ctx){
+        return ctx.VARIABLE().toString();
+    }
 }

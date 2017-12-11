@@ -17,6 +17,13 @@ public interface javascriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAsignacion(@NotNull javascriptParser.AsignacionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code opera}
+	 * labeled alternative in {@link javascriptParser#sentencia}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpera(@NotNull javascriptParser.OperaContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link javascriptParser#declaracion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -37,9 +44,21 @@ public interface javascriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeclara(@NotNull javascriptParser.DeclaraContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link javascriptParser#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperacion(@NotNull javascriptParser.OperacionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link javascriptParser#prog}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitProg(@NotNull javascriptParser.ProgContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link javascriptParser#argumento}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArgumento(@NotNull javascriptParser.ArgumentoContext ctx);
 }
