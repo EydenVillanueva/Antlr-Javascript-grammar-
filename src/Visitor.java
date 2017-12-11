@@ -20,7 +20,6 @@ public class Visitor extends javascriptBaseVisitor<String>{
     @Override
     public String visitAsignacion(javascriptParser.AsignacionContext ctx ){
         
-        
         String ctxCadena = ctx.getText();
            
         if(ctx.NUMERO() == null){
@@ -32,7 +31,7 @@ public class Visitor extends javascriptBaseVisitor<String>{
             }
         }
         else{
-            String id = ctx.STRING().getText();
+            
             if(ctxCadena.contains("\n") || ctxCadena.contains("\r")){
                 ctxCadena = ctxCadena.concat( "//Asignacion de " + ctx.NUMERO().toString() + " a " + ctx.declaracion().VARIABLE(0));
             }
@@ -68,8 +67,6 @@ public class Visitor extends javascriptBaseVisitor<String>{
     public String visitOpera(javascriptParser.OperaContext ctx){
         
         OperaString operacion = new OperaString(ctx);
-        
-        
         
         System.out.println(operacion.CodigoComentado());
         

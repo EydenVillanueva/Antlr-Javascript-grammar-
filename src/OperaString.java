@@ -112,7 +112,7 @@ public class OperaString {
         
         String codigoComentado;
         codigoComentado = ctxCadena;
-        int tamano = operaciones.size();
+        int tamano = operaciones.size() + argumentos.size();
         
         if(codigoComentado.contains("\n") || codigoComentado.contains("\r")){
             codigoComentado = codigoComentado.concat("//");
@@ -121,20 +121,26 @@ public class OperaString {
             codigoComentado = codigoComentado.concat("\n//");
         }
         
-        codigoComentado = codigoComentado.concat(" "+argumentos.get(0));
-        int contador = 1;
+        //codigoComentado = codigoComentado.concat(" "+argumentos.get(0));
+        int contadorArgumento = 0;
+        int contadorOperacion = 0;
         
-        for(int i = 0; i < tamano; i++){
-            if(i%2 == 0 || i == 0){
-                //System.out.println(i);
-                codigoComentado = codigoComentado.concat(" " + operaciones.get(i));
+        try{
+            for(int i = 1; i <= tamano; i++){
+
+                if(i%2 == 0){
+                    //System.out.println(i);
+                    codigoComentado = codigoComentado.concat(" " + operaciones.get(contadorOperacion));
+                    contadorOperacion++;
+                }
+                if(i%2 != 0){
+                    //System.out.println(i);
+                    codigoComentado = codigoComentado.concat(" " + argumentos.get(contadorArgumento));
+                    contadorArgumento++;    
+                }
             }
-            if(contador%2 != 0){
-                //System.out.println(i);
-                codigoComentado = codigoComentado.concat(" " + argumentos.get(contador));
-            }
-            contador++;
-        }
+        }catch(Exception e){}
+        
         
         return codigoComentado;
     }

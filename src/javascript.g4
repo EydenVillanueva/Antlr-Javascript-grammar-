@@ -19,7 +19,7 @@ sentencia: asignacion           #asigna
 
 
 operacion : (WS|NL)* argumento WS* (WS* OPERADORES WS* argumento)* WS* PUNTOCOMA? (WS|NL)* ;
-asignacion: declaracion WS* IGUAL WS* (STRING|NUMERO) PUNTOCOMA? (WS|NL)* ;
+asignacion: declaracion WS* IGUAL WS* ((STRING|NUMERO)|operacion+) PUNTOCOMA? (WS|NL)* ;
 declaracion : (WS|NL)* VAR? WS* VARIABLE WS* (COMA WS* VARIABLE)* WS* PUNTOCOMA? (WS|NL)* ;
 argumento: (STRING|NUMERO|VARIABLE) ;
 
