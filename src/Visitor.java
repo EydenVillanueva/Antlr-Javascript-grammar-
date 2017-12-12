@@ -1,7 +1,4 @@
 
-import java.util.HashMap;
-import java.util.Map;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,63 +12,38 @@ import java.util.Map;
 public class Visitor extends javascriptBaseVisitor<String>{
     
     
-   
-    
     @Override
     public String visitAsignacion(javascriptParser.AsignacionContext ctx ){
         
-        String ctxCadena = ctx.getText();
-           
-        if(ctx.NUMERO() == null){
-            if(ctxCadena.contains("\n") || ctxCadena.contains("\r")){
-                ctxCadena = ctxCadena.concat( "//Asignacion de " + ctx.STRING().toString() + " a " + ctx.declaracion().VARIABLE(0));
-            }
-            else{
-                ctxCadena = ctxCadena.concat( "\n//Asignacion de " + ctx.STRING().toString() + " a " + ctx.declaracion().VARIABLE(0));
-            }
+        AsignacionString asignacion;
+        if(ctx.operacion().isEmpty()){
+            asignacion = new AsignacionString(ctx);
+            System.out.println(asignacion.codigo());
         }
         else{
-            
-            if(ctxCadena.contains("\n") || ctxCadena.contains("\r")){
-                ctxCadena = ctxCadena.concat( "//Asignacion de " + ctx.NUMERO().toString() + " a " + ctx.declaracion().VARIABLE(0));
-            }
-            else{
-                ctxCadena = ctxCadena.concat( "\n//Asignacion de " + ctx.NUMERO().toString() + " a " + ctx.declaracion().VARIABLE(0));
-            }
-        }
+            asignacion = new AsignacionString(ctx,ctx.operacion(0));
+            System.out.println(asignacion.codigo());
+        }        
         
-        System.out.println(ctxCadena);
-        
-        return ctxCadena;
+        return asignacion.codigo();
     }
     
     @Override
     public String visitDeclaracion(javascriptParser.DeclaracionContext ctx ){
         
-        String ctxCadena = ctx.getText();
+        DeclaracionString declaracion = new DeclaracionString(ctx);
+        System.out.println(declaracion.codigoComentado());
         
-        if(ctxCadena.contains("\n") || ctxCadena.contains("\r")){
-            ctxCadena = ctxCadena.concat("//Declaracion de " + ctx.VARIABLE(0));
-        }
-        else{
-            ctxCadena = ctxCadena.concat("\n//Declaracion de " + ctx.VARIABLE(0));
-        }
-        
-        
-        System.out.println(ctxCadena);
-        
-        return ctx.getText();
+        return declaracion.codigoComentado();
     }
     
     @Override
-    public String visitOpera(javascriptParser.OperaContext ctx){
+    public String visitOperacion(javascriptParser.OperacionContext ctx){
         
         OperaString operacion = new OperaString(ctx);
+        System.out.println(operacion.codigoComentado());
         
-        System.out.println(operacion.CodigoComentado());
-        
-
-        return operacion.CodigoComentado();
+        return operacion.codigoComentado();
     }
     
        

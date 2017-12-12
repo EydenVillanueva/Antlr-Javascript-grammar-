@@ -1,4 +1,6 @@
 
+
+
 import java.util.ArrayList;
 
 /*
@@ -14,35 +16,45 @@ import java.util.ArrayList;
 public class OperaString {
 
 
-    private javascriptParser.OperaContext ctx;
+    private javascriptParser.OperacionContext ctx;
     private String ctxCadena;
-    private ArrayList operaciones = new ArrayList();
-    private ArrayList argumentos = new ArrayList();
+    private ArrayList operaciones;
+    private ArrayList argumentos;
+ 
     
-    
-    public OperaString(javascriptParser.OperaContext ctx){
+    public OperaString(javascriptParser.OperacionContext ctx){
         this.ctx = ctx;
         ctxCadena = ctx.getText();
+        operaciones = new ArrayList();
+        argumentos = new ArrayList();
+    }
+    
+    public String getCtxCadena() {
+        return ctxCadena;
+    }
+
+    public void setCtxCadena(String ctxCadena) {
+        this.ctxCadena = ctxCadena;
     }
     
     
-    public javascriptParser.OperaContext getCtx() {
+    public javascriptParser.OperacionContext getCtx() {
         return ctx;
     }
 
-    public void setCtx(javascriptParser.OperaContext ctx) {
+    public void setCtx(javascriptParser.OperacionContext ctx) {
         this.ctx = ctx;
     }
     
     //Devuelve la lista de operaciones en un array de una dimensión
     public ArrayList Operacion(){
-        int tamano = ctx.operacion().OPERADORES().size();
+        int tamano = ctx.OPERADORES().size();
         
         
         
         if(tamano == 1){
             String auxiliar = "";
-            String operacion = ctx.operacion().OPERADORES().toString();
+            String operacion = ctx.OPERADORES().toString();
             
             if(operacion.contains("+")){
                 auxiliar = "mas";
@@ -61,20 +73,20 @@ public class OperaString {
             return operaciones;
         }
         
-        else if(ctx.operacion().OPERADORES().size() != 1){
+        else if(ctx.OPERADORES().size() != 1){
             
             
             for(int i  = 0; i < tamano; i++ ){
-                if(ctx.operacion().OPERADORES(i).toString().contains("+")){
+                if(ctx.OPERADORES(i).toString().contains("+")){
                     operaciones.add("mas");
                 }
-                if(ctx.operacion().OPERADORES(i).toString().contains("-")){
+                if(ctx.OPERADORES(i).toString().contains("-")){
                     operaciones.add("menos");
                 }
-                if(ctx.operacion().OPERADORES(i).toString().contains("/")){
+                if(ctx.OPERADORES(i).toString().contains("/")){
                     operaciones.add("entre");
                 }
-                if(ctx.operacion().OPERADORES(i).toString().contains("*")){
+                if(ctx.OPERADORES(i).toString().contains("*")){
                     operaciones.add("por");
                 }
             }
@@ -87,17 +99,17 @@ public class OperaString {
     //Devuelve la lista de argumentos en un array de una dimensión
     public ArrayList tiposArgumento(){
         
-        int tamano = ctx.operacion().argumento().size();
+        int tamano = ctx.argumento().size();
         
         for (int i = 0; i < tamano; i++){
-            if(ctx.operacion().argumento(i).VARIABLE() != null){
-                argumentos.add(ctx.operacion().argumento(i).VARIABLE().toString());
+            if(ctx.argumento(i).VARIABLE() != null){
+                argumentos.add(ctx.argumento(i).VARIABLE().toString());
             }            
-            if(ctx.operacion().argumento(i).NUMERO() != null){
-                argumentos.add(ctx.operacion().argumento(i).NUMERO().toString());
+            if(ctx.argumento(i).NUMERO() != null){
+                argumentos.add(ctx.argumento(i).NUMERO().toString());
             }
-            if(ctx.operacion().argumento(i).STRING() != null){
-                argumentos.add(ctx.operacion().argumento(i).STRING().toString());
+            if(ctx.argumento(i).STRING() != null){
+                argumentos.add(ctx.argumento(i).STRING().toString());
             }
         }
         
@@ -105,7 +117,7 @@ public class OperaString {
     }
     
     //devuelve el codigo comentado para la impresion
-    public String CodigoComentado(){
+    public String codigoComentado(){
         
         tiposArgumento();
         Operacion();
@@ -114,14 +126,11 @@ public class OperaString {
         codigoComentado = ctxCadena;
         int tamano = operaciones.size() + argumentos.size();
         
-        if(codigoComentado.contains("\n") || codigoComentado.contains("\r")){
-            codigoComentado = codigoComentado.concat("//");
-        }
-        else{
-            codigoComentado = codigoComentado.concat("\n//");
-        }
         
-        //codigoComentado = codigoComentado.concat(" "+argumentos.get(0));
+        codigoComentado = quitarSaltos(codigoComentado);
+        codigoComentado = codigoComentado.concat("      //Operacion:");
+        
+        
         int contadorArgumento = 0;
         int contadorOperacion = 0;
         
@@ -129,12 +138,10 @@ public class OperaString {
             for(int i = 1; i <= tamano; i++){
 
                 if(i%2 == 0){
-                    //System.out.println(i);
                     codigoComentado = codigoComentado.concat(" " + operaciones.get(contadorOperacion));
                     contadorOperacion++;
                 }
                 if(i%2 != 0){
-                    //System.out.println(i);
                     codigoComentado = codigoComentado.concat(" " + argumentos.get(contadorArgumento));
                     contadorArgumento++;    
                 }
@@ -144,4 +151,10 @@ public class OperaString {
         
         return codigoComentado;
     }
+    
+    public String quitarSaltos(String cadena){
+        return cadena.replaceAll("[\n\r]","");
+    }
+
+
 }
