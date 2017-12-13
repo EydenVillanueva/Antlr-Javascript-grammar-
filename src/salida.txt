@@ -1,0 +1,11 @@
+if(hola || hola){      //Sentencia Condcional
+
+	5+4;          //Operacion: 5 mas 4
+	8/8/8                        //Operacion: 8 entre 8 entre 8
+	var hola = 3+3;          //Operacion: 3 mas 3 Asignado a: hola
+	var hola = 3+4;              //Operacion: 3 mas 4 Asignado a: hola
+	var h = "cadena"              //Asignacion de "cadena" a h
+	var h = hola + 3      //Operacion: hola mas 3 Asignado a: h
+	var eyden;           //Declaracion de  eyden
+	var hola,caro,eyden;               //Declaracion de  hola, caro y eyden
+}

@@ -5,8 +5,10 @@
  */
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
@@ -19,12 +21,23 @@ import org.antlr.v4.runtime.tree.*;
 public class Javascript {
     
     public static void main(String[] args) {
-            
+        
+        String arcSalida = "salida.txt";
         String archEntrada = null;
         InputStream fuenteEntrada = null;
+        OutputStream salida = null;
         ANTLRInputStream entrada = null;
         
+        
         try{
+            File archivo = new File("C:\\Users\\Eyden Villanueva\\Documents\\GitHub\\Antlr-Javascript-grammar-\\src\\salida.txt");
+            
+            
+            if(archivo.exists()){
+                archivo.delete();
+            }
+            
+            
             archEntrada = "C:\\Users\\Eyden Villanueva\\Documents\\GitHub\\Antlr-Javascript-grammar-\\src\\entrada.js";
             fuenteEntrada = new FileInputStream(archEntrada);
             entrada = new ANTLRInputStream(fuenteEntrada);

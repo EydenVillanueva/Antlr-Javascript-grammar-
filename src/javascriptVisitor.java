@@ -11,6 +11,13 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface javascriptVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by the {@code condi}
+	 * labeled alternative in {@link javascriptParser#sentencia}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondi(@NotNull javascriptParser.CondiContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link javascriptParser#asignacion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -29,6 +36,12 @@ public interface javascriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDeclaracion(@NotNull javascriptParser.DeclaracionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link javascriptParser#condicional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondicional(@NotNull javascriptParser.CondicionalContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code asigna}
 	 * labeled alternative in {@link javascriptParser#sentencia}.
@@ -49,6 +62,12 @@ public interface javascriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOperacion(@NotNull javascriptParser.OperacionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link javascriptParser#condicion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondicion(@NotNull javascriptParser.CondicionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link javascriptParser#prog}.
 	 * @param ctx the parse tree

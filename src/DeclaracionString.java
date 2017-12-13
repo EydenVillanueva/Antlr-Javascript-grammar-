@@ -60,10 +60,6 @@ public class DeclaracionString {
         ctxCadena = quitarSaltos(ctxCadena);
         ctxCadena = ctxCadena.concat("       //Declaracion de ");
        
-        
-        
-        
-        
         for(int i = 0; i < tamano; i++){
             if(i == tamano-2){coma=" y";}
             if(i == tamano-1){coma="";}

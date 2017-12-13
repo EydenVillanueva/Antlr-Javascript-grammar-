@@ -1,4 +1,13 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,29 +20,115 @@
  */
 public class Visitor extends javascriptBaseVisitor<String>{
     
+    File archivo = new File("C:\\Users\\Eyden Villanueva\\Documents\\GitHub\\Antlr-Javascript-grammar-\\src\\salida.txt");
+    FileWriter fw;
+    BufferedWriter bw;
+    PrintWriter pw;
+    
+    @Override
+    public String visitCondicional(javascriptParser.CondicionalContext ctx){
+        
+        CondicionalString condicion = new CondicionalString(ctx);
+        //Si es true esta vacia
+        boolean noHayAsignacion = ctx.asignacion().isEmpty();
+        boolean noHayDeclaracion = ctx.declaracion().isEmpty();
+        boolean noHayOperacion = ctx.operacion().isEmpty();
+       
+        condicion.setListaAsignacion(ctx.asignacion());
+        condicion.setListaDeclaracion(ctx.declaracion());
+        condicion.setListaOperaciones(ctx.operacion());
+        
+        
+        condicion.setBooleanos();
+        
+        
+        try{
+                fw = new FileWriter(archivo,true);
+                bw = new BufferedWriter(fw);
+                pw = new PrintWriter(bw);
+
+                pw.write(condicion.codigoComentado());
+                bw.newLine();     
+                
+            
+                bw.close();
+                pw.close();
+            
+
+            }catch(Exception e){e.printStackTrace();}         
+   
+        return "";
+    }
+    
     
     @Override
     public String visitAsignacion(javascriptParser.AsignacionContext ctx ){
         
         AsignacionString asignacion;
         if(ctx.operacion().isEmpty()){
+            
             asignacion = new AsignacionString(ctx);
-            System.out.println(asignacion.codigo());
+            //System.out.println(asignacion.codigo());
+            
+            try{
+                fw = new FileWriter(archivo,true);
+                bw = new BufferedWriter(fw);
+                pw = new PrintWriter(bw);
+
+                pw.write(asignacion.codigo());
+                bw.newLine();
+            
+                bw.close();
+                pw.close();
+                
+                
+                            
+
+            }catch(Exception e){System.out.println("NO SE ESCRIBIO EN EL ACHIVO");}            
         }
         else{
+            
             asignacion = new AsignacionString(ctx,ctx.operacion(0));
-            System.out.println(asignacion.codigo());
-        }        
+            try{
+                fw = new FileWriter(archivo,true);
+                bw = new BufferedWriter(fw);
+                pw = new PrintWriter(bw);
+
+                pw.write(asignacion.codigo());
+                bw.newLine();         
+            
+                bw.close();
+                pw.close();
+                            
+
+            }catch(Exception e){System.out.println("NO SE ESCRIBIO EN EL ACHIVO");}                  
+            
+            
+            //System.out.println(asignacion.codigo());
+        }
         
-        return asignacion.codigo();
+        
+        return "";
     }
+    
     
     @Override
     public String visitDeclaracion(javascriptParser.DeclaracionContext ctx ){
-        
         DeclaracionString declaracion = new DeclaracionString(ctx);
-        System.out.println(declaracion.codigoComentado());
+        try{
+            fw = new FileWriter(archivo,true);
+            bw =  new BufferedWriter(fw);
+            pw = new PrintWriter(bw);
+            
+            pw.write(declaracion.codigoComentado());
+            bw.newLine();         
+            
+            bw.close();
+            pw.close();
+            
         
+        }catch(Exception e){}
+
         return declaracion.codigoComentado();
     }
     
@@ -41,7 +136,22 @@ public class Visitor extends javascriptBaseVisitor<String>{
     public String visitOperacion(javascriptParser.OperacionContext ctx){
         
         OperaString operacion = new OperaString(ctx);
-        System.out.println(operacion.codigoComentado());
+        
+        try{
+            fw = new FileWriter(archivo,true);
+            bw =  new BufferedWriter(fw);
+            pw = new PrintWriter(bw);
+            
+            pw.write(operacion.codigoComentado());
+            bw.newLine();         
+            
+            bw.close();
+            pw.close();
+            
+        
+        }catch(Exception e){}
+        
+        
         
         return operacion.codigoComentado();
     }
@@ -51,4 +161,6 @@ public class Visitor extends javascriptBaseVisitor<String>{
     public String visitArgumento(javascriptParser.ArgumentoContext ctx){
         return ctx.VARIABLE().toString();
     }
+
 }
+    

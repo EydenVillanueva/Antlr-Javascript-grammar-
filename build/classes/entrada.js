@@ -1,7 +1,16 @@
-var eyden = 10;
-var joaquin = 20;
-10 + 10 - 20;
-3 / "cadena"
-var variable = 10 + 10 - variable
-var eyden;
-var eyden, h, variable, eyden, h;
+if(hola || hola){
+    var eyden;
+    var hola,caro,eyden;
+    
+    5+4;
+    8/8/8
+      
+    
+    
+    var hola = 3+3;
+    var hola = 3+4;
+    
+    var h = "cadena"
+    
+    var h = hola + 3
+}

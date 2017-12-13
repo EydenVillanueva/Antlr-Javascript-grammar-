@@ -8,6 +8,18 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface javascriptListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by the {@code condi}
+	 * labeled alternative in {@link javascriptParser#sentencia}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondi(@NotNull javascriptParser.CondiContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code condi}
+	 * labeled alternative in {@link javascriptParser#sentencia}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondi(@NotNull javascriptParser.CondiContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link javascriptParser#asignacion}.
 	 * @param ctx the parse tree
 	 */
@@ -39,6 +51,16 @@ public interface javascriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaracion(@NotNull javascriptParser.DeclaracionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link javascriptParser#condicional}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondicional(@NotNull javascriptParser.CondicionalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link javascriptParser#condicional}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondicional(@NotNull javascriptParser.CondicionalContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code asigna}
 	 * labeled alternative in {@link javascriptParser#sentencia}.
@@ -73,6 +95,16 @@ public interface javascriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOperacion(@NotNull javascriptParser.OperacionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link javascriptParser#condicion}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondicion(@NotNull javascriptParser.CondicionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link javascriptParser#condicion}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondicion(@NotNull javascriptParser.CondicionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link javascriptParser#prog}.
 	 * @param ctx the parse tree

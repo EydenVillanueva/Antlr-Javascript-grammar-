@@ -16,6 +16,18 @@ public class javascriptBaseListener implements javascriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCondi(@NotNull javascriptParser.CondiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCondi(@NotNull javascriptParser.CondiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAsignacion(@NotNull javascriptParser.AsignacionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -52,6 +64,18 @@ public class javascriptBaseListener implements javascriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCondicional(@NotNull javascriptParser.CondicionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCondicional(@NotNull javascriptParser.CondicionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAsigna(@NotNull javascriptParser.AsignaContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -83,6 +107,18 @@ public class javascriptBaseListener implements javascriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOperacion(@NotNull javascriptParser.OperacionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCondicion(@NotNull javascriptParser.CondicionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCondicion(@NotNull javascriptParser.CondicionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
