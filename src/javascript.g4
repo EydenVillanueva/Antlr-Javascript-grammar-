@@ -11,7 +11,8 @@ grammar javascript;
 prog:   sentencia* (NL|WS)*;
 
 
-sentencia:  asignacion          #asigna
+sentencia:  
+        asignacion          #asigna
         |   operacion           #opera
         |   declaracion         #declara
         |   condicional         #condi
@@ -20,8 +21,7 @@ sentencia:  asignacion          #asigna
 
 
 
-condicional: (WS|NL)* IF (WS)* condicion (WS|NL)* ABRIRLLAVES (WS|NL)* 
-             (operacion|asignacion|declaracion|condicional)* CERRARLLAVES (WS|NL)*; 
+condicional: (WS|NL)* IF (WS)* condicion (WS|NL)* ABRIRLLAVES (WS|NL)* (sentencia)* (WS|NL)* CERRARLLAVES (WS|NL)*; 
 
 operacion : (WS|NL)* argumento WS* (WS* OPERADORES WS* argumento)* WS* PUNTOCOMA? (WS|NL)* ;
 
@@ -33,7 +33,7 @@ argumento: (STRING|NUMERO|VARIABLE);
 
 condicion: (WS|NL)* ABRIRPARENTESIS (WS)* argumento (WS)* OPERADORESLOGICOS (WS)* argumento (WS)* CERRARPARENTESIS (WS|NL)*;
 
-
+contenido: (operacion|asignacion|declaracion);
 
 
 

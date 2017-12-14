@@ -24,6 +24,12 @@ public interface javascriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAsignacion(@NotNull javascriptParser.AsignacionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link javascriptParser#contenido}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContenido(@NotNull javascriptParser.ContenidoContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code opera}
 	 * labeled alternative in {@link javascriptParser#sentencia}.
 	 * @param ctx the parse tree

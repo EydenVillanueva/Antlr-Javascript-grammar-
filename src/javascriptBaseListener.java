@@ -40,6 +40,18 @@ public class javascriptBaseListener implements javascriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterContenido(@NotNull javascriptParser.ContenidoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitContenido(@NotNull javascriptParser.ContenidoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterOpera(@NotNull javascriptParser.OperaContext ctx) { }
 	/**
 	 * {@inheritDoc}

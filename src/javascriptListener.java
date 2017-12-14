@@ -30,6 +30,16 @@ public interface javascriptListener extends ParseTreeListener {
 	 */
 	void exitAsignacion(@NotNull javascriptParser.AsignacionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link javascriptParser#contenido}.
+	 * @param ctx the parse tree
+	 */
+	void enterContenido(@NotNull javascriptParser.ContenidoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link javascriptParser#contenido}.
+	 * @param ctx the parse tree
+	 */
+	void exitContenido(@NotNull javascriptParser.ContenidoContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code opera}
 	 * labeled alternative in {@link javascriptParser#sentencia}.
 	 * @param ctx the parse tree

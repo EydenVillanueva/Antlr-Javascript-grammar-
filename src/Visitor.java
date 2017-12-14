@@ -28,29 +28,21 @@ public class Visitor extends javascriptBaseVisitor<String>{
     @Override
     public String visitCondicional(javascriptParser.CondicionalContext ctx){
         
-        CondicionalString condicion = new CondicionalString(ctx);
-        //Si es true esta vacia
-        boolean noHayAsignacion = ctx.asignacion().isEmpty();
-        boolean noHayDeclaracion = ctx.declaracion().isEmpty();
-        boolean noHayOperacion = ctx.operacion().isEmpty();
+        
+        CondicionalString condicion = new CondicionalString(ctx,ctx.sentencia());
+        
        
-        condicion.setListaAsignacion(ctx.asignacion());
-        condicion.setListaDeclaracion(ctx.declaracion());
-        condicion.setListaOperaciones(ctx.operacion());
-        
-        
-        condicion.setBooleanos();
-        
-        
+
         try{
                 fw = new FileWriter(archivo,true);
                 bw = new BufferedWriter(fw);
                 pw = new PrintWriter(bw);
+                
+   
 
                 pw.write(condicion.codigoComentado());
-                bw.newLine();     
-                
-            
+                bw.newLine(); 
+
                 bw.close();
                 pw.close();
             
